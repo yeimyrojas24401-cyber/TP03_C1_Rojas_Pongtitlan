@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -142,11 +143,27 @@ public class pauseMenu : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-
+    private float SpeedToSliderValue(float Speed) //Genere esta variable speed to Slider Value porque el ultimo dato que guardo nuestro Game Manager.Instance fueron los valores 500, 1000, 2000
+                                                  //que se ponian en la velocidad. Entonces ahora estos valores tenemos que retomarlo y re-convertirlos para que en el Slider se puedan interpretar como 1,2,3
+    {
+        switch (Speed)
+        {
+            case 500:
+                return 1;
+            case 1000:
+                return 2;
+            case 2000:
+                return 3;
+            default:
+                return 2;
+        }
+    }
     private void OnSettingsClicked()
     {
-        sliderPlayer1Speed.value = player1.moveSpeedPlayer;
-        sliderPlayer2Speed.value = player2.moveSpeedPlayer;
+        // retoma los ultimos valores del gameManager.instance. y los pone en su valor correpondiente
+        sliderPlayer1Speed.value = SpeedToSliderValue(GameManager.Instance.player1Speed);
+        sliderPlayer2Speed.value = SpeedToSliderValue(GameManager.Instance.player2Speed);
+
         settingsPanel.SetActive(true);
     }
 

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class UiMainMenu : MonoBehaviour
 {
@@ -140,6 +141,7 @@ public class UiMainMenu : MonoBehaviour
         mainMenuCanvas.SetActive(false);
         settingsPanel.SetActive(false);
     }
+
     // Speed Changed Player 1 Slider
     private void OnPlayer1SpeedChanged(float value) // esta funcion va a recibir un numero decimal cuando sea llamada
     {
@@ -157,6 +159,7 @@ public class UiMainMenu : MonoBehaviour
         }
         textSpeedPlayer1.text = GameManager.Instance.player1Speed.ToString();
     }
+
     // Speed Changed Player 2 Slider
     private void OnPlayer2SpeedChanged(float value)
     {
