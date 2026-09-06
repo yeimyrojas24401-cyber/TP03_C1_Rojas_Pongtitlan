@@ -16,7 +16,14 @@ public class MovementPlayer : MonoBehaviour
     public float moveSpeedPlayer = 1f;
     private Rigidbody2D rb;
 
+    [Header("Movement Limits")]
+    [SerializeField] private float minX = -5f;
+    [SerializeField] private float maxX = -5f;
+    [SerializeField] private float minY = -5f;
+    [SerializeField] private float maxY = -5f;
+
     [Range(1,2)][SerializeField] private int playerIndex = 1;
+
     
     void Awake()
     {
@@ -81,6 +88,10 @@ public class MovementPlayer : MonoBehaviour
                 rb.position += new Vector2(-moveSpeedPlayer * Time.fixedDeltaTime, 0);
             }
         }
+        // limites posicion de las paletas 
+        Vector2 posicionLimitada = rb.position;
 
+        posicionLimitada.x = Mathf.Clamp(posicionLimitada.x, minX, maxX);
+        posicionLimitada.y = Mathf.Clamp(posicionLimitada.y, minY, maxY);
     }
 }
